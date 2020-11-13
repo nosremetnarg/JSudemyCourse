@@ -1,199 +1,66 @@
 'use strict';
 
-// function calcAge(birthYear) {
-//   const age = 2037 - birthYear;
+const restaurant = {
+  name: 'Classico Italiano',
+  location: 'Via Angelo Tavanti 23, Firenze, Italy',
+  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-//   function printAge() {
-//     let output = (`${firstName} You are the age ${age}, born in ${birthYear}`);
-//     console.log(output);
+  order: function(starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]]
+  },
 
-//     if (birthYear >= 1981 && birthYear <= 1996) {
-//       const firstName = 'Frank';
-//       const str = `Oh, and you are a millenial ${firstName}`;
-//       console.log(str);
-
-//       function add(a, b) {
-//         return a + b;
-//       }
-
-//       output = "NEW OUTPUT"
-//     }
-//     // console.log(add(2, 3));
-//     console.log(output);
-//   }
-//   printAge();
-
-//   return age;
-// }
-
-// const firstName = 'Grant';
-// calcAge(1984);
-// console.log(age);
-// printAge()
-
-
-
-// console.log(me);
-// console.log(job);
-// console.log(year);
-
-// var me = 'Grant';
-// let job = 'teacher';
-// const year = 1984;
-
-// Functions 
-// console.log(addDecl(2,3));
-// console.log(addExpr(2,3));
-// console.log(addArrow(2,3));
-
-// function addDecl(a,b) {
-//     return a + b;
-// }
-
-// const addExpr = function(a,b) {
-//     return a + b
-// }
-
-// var addArrow = (a, b) => a + b;
-
-// // Example
-// if(!numProducts) deleteShoppingCart();
-
-// var numProducts = 10;
-
-// function deleteShoppingCart() {
-//     console.log('All products deleted');
-// }
-
-// console.log(this)
-
-// const calcAge = function(birthYear) {
-//     console.log(2037 - birthYear);
-//     // console.log(this);
-// }
-// calcAge(1984);
-
-// const calcAgeArrow = (birthYear) => {
-//     console.log(2037 - birthYear);
-//     // console.log(this);
-// }
-// calcAgeArrow(1991);
-
-// const grant = {
-//     year: 1991,
-//     calcAge: function() {
-//         console.log(this);
-//         console.log(2037 - this.year);
-//     }
-// }
-// grant.calcAge();
-
-// const matilda = {
-//     year: 2017,
-// };
-
-// matilda.calcAge = grant.calcAge;
-// matilda.calcAge()
-
-// const f = grant.calcAge;
-// f();
-
-// var firstName = 'Jonas'
-
-// const grant = {
-//     firstName: 'Grant',
-//     year: 1991,
-//     calcAge: function() {
-//         // console.log(this);
-//         console.log(2037 - this.year);
-
-//         // const self = this;
-//         // const isMillenial = function() {
-//         //     console.log(self);
-//         //     // console.log(this.year >= 1981 && this.year <= 1996);
-//         //     console.log(self.year >= 1981 && self.year <= 1996);
-//         // };
-
-
-//         const isMillenial = () => {
-//             console.log(this);
-//             console.log(this.year >= 1981 && this.year <= 1996);
-//         };
-//        isMillenial();
-//     },
-//     greet: () =>{
-//         console.log(this);
-//         console.log(`Hey ${this.firstName}`)},
-// };
-
-// grant.greet();
-// grant.calcAge();
-
-// // arguments keyword
-// const addExpr = function(a,b) {
-//     console.log(arguments);
-//     return a + b
-// }
-// addExpr(2,5);
-// addExpr(2, 5, 8, 12)
-
-// var addArrow = (a, b) => {
-//     console.log(arguments);
-//     return a + b
-// };
-// addArrow((2,5,8))
-
-// let age = 30;
-// let oldAge = age;
-// age = 31;
-// console.log(oldAge);
-// console.log(age);
-
-// const me = {
-//     name: 'Grant',
-//     age: 30
-// };
-
-// const friend = me;
-// friend.age = 27;
-// console.log('Friend:', friend);
-// console.log("Me:", me);
-
-// primitive types
-let lastName = "Williams";
-let oldLastName = lastName;
-lastName = "Davis";
-console.log(lastName);
-console.log(oldLastName);
-
-// ref types
-const jessica = {
-    firstName: 'Jessica',
-    lastName: "Williams",
-    age: 27
+  openingHours: {
+    thu: {
+      open: 12,
+      close: 22,
+    },
+    fri: {
+      open: 11,
+      close: 23,
+    },
+    sat: {
+      open: 0, // Open 24 hours
+      close: 24,
+    },
+  },
 };
 
-const marriedJessica = jessica;
-marriedJessica.lastName = "Davis";
-console.log("Before marriage", jessica);
-console.log("after marriage", marriedJessica);
 
-// marriedJessica = {
+const arr = [2,3,4];
+const a = arr[0]
+const b = arr[1]
+const c = arr[2]
 
-// }
+const [x,y,z] = arr;
+console.log(x,y,z);
+console.log(arr);
 
-const jessica2 = {
-    firstName: 'Jessica',
-    lastName: "Williams",
-    age: 27,
-    family: ['Alice', 'Bob']
-};
+let [main, , secondary] = restaurant.categories;
+console.log(main, secondary);
 
-const jessicaCopy = Object.assign({}, jessica2) // copies the object and creates a new obj
-jessicaCopy.lastName = 'Davis';
+// switching variables
+// const temp = main
+// main = secondary
+// secondary = temp;
+// console.log(main, secondary);
 
-jessicaCopy.family.push("Mary")
-jessicaCopy.family.push("John")
-console.log("Before marriage", jessica2);
-console.log("After marriage", jessicaCopy);
+// 
+[main, secondary] = [secondary, main]
+console.log(main, secondary);
 
+// return two values from a function
+const [starter, mainCourse] = (restaurant.order(2,0))
+console.log(starter, mainCourse);
+
+// Nested Destructuring
+const nested = [2,4, [5,6]];
+// const [i, ,j] = nested;
+// console.log(i, j);
+const [ i, , [ j, k ] ] = nested
+console.log(i,j,k);
+
+// Default values
+const [ p=1, q=1, r=1] = [8]
+console.log(p,q,r);
