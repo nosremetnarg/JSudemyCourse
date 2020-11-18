@@ -47,56 +47,177 @@ const restaurant = {
   },
 };
 
-// video 120 ================== strings are primitive
+// video 122 ================== strings part 3
 
-const airline = 'TAP Air Portugal';
-const plane = "A320";
+// split and join
+console.log('a+very+nice+string'.split('+'));
+console.log('grant emerson'.split(' '));
 
-console.log(plane[0]);
-console.log(plane[1]);
-console.log(plane[2]);
-console.log(plane[3]);
-console.log('B737'[0]);
+const [firstName, lastName ] = 'grant emerson'.split(' ')
+// console.log(firstName, lastName);
 
-console.log(airline.length);
-console.log('B737'.length);
+const newName =['Mr.', firstName, lastName.toUpperCase()].join(' ');
+console.log(newName);
 
-console.log(airline.indexOf('r'));
-console.log(airline.lastIndexOf('r'));
-console.log(airline.indexOf('Portugal'));
-
-console.log(airline.slice(4));
-console.log(airline.slice(4, 7)); // length of extracted string
-// is end minus beginning
-
-console.log(airline.slice(0, airline.indexOf(' ')));
-console.log(airline.slice(airline.lastIndexOf(' ') + 1));
-
-console.log(airline.slice(-2));
-console.log(airline.slice(1, -1));
-
-const checkMiddleSeat = function (seat) {
-  // B and E are middle seats
-  const s = seat.slice(-1); // get last character 
-  if (s === 'B' || s === 'E')
-  console.log('You got the middle seat 🏩')
-  else console.log("You are lucky ⚓️");
+const capitalizedName = function(name) {
+  const names = name.split(' ');
+  const namesUpper = [];
+  for (const n of names) {
+    //  namesUpper.push(n[0].toUpperCase() + n.slice(1));
+    namesUpper.push(n[0].replace( n[0], n[0].toUpperCase() ) + n.slice(1))
+    
+      // capitalize first letter
+  }
+  console.log(namesUpper.join(' '));
 }
 
-checkMiddleSeat('11B');
-checkMiddleSeat('23C');
-checkMiddleSeat('3E');
+capitalizedName('jessica ann smith davis');
+capitalizedName('grant alex emerson');
 
-console.log(new String('grant'));
-console.log(typeof new String('Grant'));
+// padding 
+const message = 'Go to gate 23!';
+console.log(message.padStart(25, "+").padEnd(35, '+'));
+console.log('grant'.padStart(25, '+'));
+console.log('bob'.padStart(25, '=').padEnd(3, "+"));
 
-// all string methods return primitives
+const maskCreditCard = function(number) {
+  const str = number + '';
+  const last = str.slice(-4);
+  return last.padStart(str.length, "*")
+}
 
-console.log(typeof new String('grant').slice(1));
+console.log(maskCreditCard(123321433))
+console.log(maskCreditCard(234432234234))
+console.log(maskCreditCard('09203232123'))
+
+// repeat
+const message2 = 'Bad Weather....All Departures Delayed ';
+console.log(message2.repeat(5));
+
+const planesInLine = function(n) {
+  console.log(`There are ${n} planes in line ${'✈️'.repeat(n)}`);
+}
+planesInLine(5);
+planesInLine(3)
+planesInLine(12)
 
 
 
+// video 121 ================== strings part 2
 
+// const airline = 'TAP Air Portugal';
+// console.log(airline.toLowerCase());
+// console.log(airline.toUpperCase());
+
+// // fix capitalization in name
+// const passenger = 'jOnAs';
+// const passengerLower = passenger.toLowerCase();
+// const passengerCorrect =
+//   passengerLower[0].toUpperCase() + passengerLower.slice(1);
+// console.log(passengerCorrect);
+
+// function nameFix(name) {
+//   const lowerName = name.toLowerCase();
+//   const fixedName = lowerName[0].toUpperCase() + lowerName.slice(1);
+//   console.log(fixedName);
+// }
+// nameFix('gRaNt');
+// nameFix('aLeXaNdER');
+// nameFix('SILAS');
+
+// // comparing email
+// const email = 'hello@grant.io';
+// const loginEmail = '  Hello@grant.Io \n';
+
+// // const lowerEmail = loginEmail.toLowerCase();
+// // const trimmedEmail = lowerEmail.trim();
+// // console.log(trimmedEmail);
+
+// const normalizedEmail = loginEmail.toLowerCase().trim();
+// console.log(normalizedEmail);
+// console.log(email === normalizedEmail);
+
+// // replacing
+// const priceGB = '288,97£';
+// const priceUS = priceGB.replace('£', '$').replace(',', '.');
+// console.log(priceUS);
+
+// const announcement =
+//   'All passengers come to boarding door 23, Boarding door 23';
+
+// // console.log(announcement.replace('door', 'gate'));
+// // console.log(announcement.replaceAll('door', 'gate'));
+// console.log(announcement.replace(/door/g, 'gate')); // add in regex
+
+// // Booleans
+// const plane = 'Airbus 320neo';
+// console.log(plane.includes('A320'));
+// console.log(plane.includes('Boeing'));
+// console.log(plane.startsWith('Air'));
+
+// if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
+//   console.log('part of the new airbus family');
+// }
+
+// // Practice exercise
+// const checkBaggage = function(item) {
+//   const baggage = item.toLowerCase();
+//   if (baggage.includes('knife') || baggage.includes('gun')) {
+//     console.log(`you are NOT allowed on board`);
+//   } else {
+//     console.log(`Welcome aboard`);
+//   }
+// }
+// checkBaggage(`I have a laptop, some Food and a pocket Knife`)
+// checkBaggage(`Socks and camera`)
+// checkBaggage(`Got some snacks and a gun for protection`)
+
+// video 120 ================== strings are primitive
+
+// const airline = 'TAP Air Portugal';
+// const plane = "A320";
+
+// console.log(plane[0]);
+// console.log(plane[1]);
+// console.log(plane[2]);
+// console.log(plane[3]);
+// console.log('B737'[0]);
+
+// console.log(airline.length);
+// console.log('B737'.length);
+
+// console.log(airline.indexOf('r'));
+// console.log(airline.lastIndexOf('r'));
+// console.log(airline.indexOf('Portugal'));
+
+// console.log(airline.slice(4));
+// console.log(airline.slice(4, 7)); // length of extracted string
+// // is end minus beginning
+
+// console.log(airline.slice(0, airline.indexOf(' ')));
+// console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+
+// console.log(airline.slice(-2));
+// console.log(airline.slice(1, -1));
+
+// const checkMiddleSeat = function (seat) {
+//   // B and E are middle seats
+//   const s = seat.slice(-1); // get last character
+//   if (s === 'B' || s === 'E')
+//   console.log('You got the middle seat 🏩')
+//   else console.log("You are lucky ⚓️");
+// }
+
+// checkMiddleSeat('11B');
+// checkMiddleSeat('23C');
+// checkMiddleSeat('3E');
+
+// console.log(new String('grant'));
+// console.log(typeof new String('Grant'));
+
+// // all string methods return primitives
+
+// console.log(typeof new String('grant').slice(1));
 
 // coding challenge 3 =============================================
 
@@ -115,14 +236,14 @@ console.log(typeof new String('grant').slice(1));
 // ]);
 
 // Attempt number two
-// 1. 
+// 1.
 
 // const events = new Set(gameEvents.values());
 // console.log(events);
 // const keys = new Set(gameEvents.keys());
 // console.log(keys);
 
-// // 2. 
+// // 2.
 // gameEvents.delete(64);
 // console.log(gameEvents);
 
@@ -139,28 +260,24 @@ console.log(typeof new String('grant').slice(1));
 //   console.log(`${half} HALF: ${min} ${event}`);
 // }
 
-
 // for (const [min, event] of gameEvents) {
 //   const half = min < 45 ? 'FIRST' : 'SECOND'
 //   console.log(`[${half} HALF]:${min} ${event}`);
 // }
 
-
 // // 1.
 // const eventSet = [...new Set(gameEvents.values())];
 // console.log(eventSet);
 
-// // 2. 
+// // 2.
 // console.log(gameEvents.delete(64));
 // console.log(gameEvents);
 
-// // 3. 
+// // 3.
 // console.log(`An event happened, on average, every ${90 / gameEvents.size} minutes`);
 // const time = [...gameEvents.keys()].pop();
 // console.log(time);
 // console.log(`An event happened, on average, every ${time / gameEvents.size} minutes`);
-
-
 
 // // 4.
 // for (const [min, event] of gameEvents) {
@@ -169,7 +286,6 @@ console.log(typeof new String('grant').slice(1));
 // }
 
 // coding challenge 3 =============================================
-
 
 // video 118 data structure summary ===========================
 
@@ -268,7 +384,6 @@ console.log(typeof new String('grant').slice(1));
 // console.log(new Set(['waiter', 'chef', 'waiter', 'manager', 'waiter', 'chef']).size);
 // console.log(new Set('grantemerson').size);
 // ==================== video 115
-
 
 // // property names
 // const properties = Object.keys(openingHours);
