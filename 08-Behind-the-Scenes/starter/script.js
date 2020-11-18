@@ -47,61 +47,103 @@ const restaurant = {
   },
 };
 
+// challenge 4 ==================================
+
+// attempt 2
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+document.querySelector('button').addEventListener('click', function () {
+  const text = document.querySelector('textarea').value;
+  console.log(text);
+
+  const rows = text.split('\n'); // seperate entries
+  console.log(rows);
+
+  for (const [i, row] of rows.entries()) {
+    const [first, second] = row.toLowerCase().trim().split('_');
+
+    const output = `${first}${second.replace(
+      second[0],
+      second[0].toUpperCase()
+    )}`;
+    console.log(`${output.padEnd(20)}${'✅'.repeat(i + 1)}`);
+  }
+});
+
+// attempt 1
+// document.body.append(document.createElement('textarea'));
+// const btn = document.body.append(document.createElement('button'));
+
+// document.querySelector('button').addEventListener('click', function () {
+//   const text = document.querySelector('textarea').value;
+//   const lowerText = text.toLowerCase().trim();
+//   const splitTexts = lowerText.split('\n');
+
+//   for (const [i, splitText] of splitTexts.entries()) {
+//     const [first, second] = splitText.toLowerCase().trim().split('_');
+
+//     const output = `${first}${second.replace(
+//       second[0],
+//       second[0].toUpperCase()
+//     )}`;
+//     console.log(`${output.padEnd(20)}${'✅'.repeat(i + 1)}`);
+//   }
+// });
+
 // video 122 ================== strings part 3
 
 // split and join
-console.log('a+very+nice+string'.split('+'));
-console.log('grant emerson'.split(' '));
+// console.log('a+very+nice+string'.split('+'));
+// console.log('grant emerson'.split(' '));
 
-const [firstName, lastName ] = 'grant emerson'.split(' ')
-// console.log(firstName, lastName);
+// const [firstName, lastName ] = 'grant emerson'.split(' ')
+// // console.log(firstName, lastName);
 
-const newName =['Mr.', firstName, lastName.toUpperCase()].join(' ');
-console.log(newName);
+// const newName =['Mr.', firstName, lastName.toUpperCase()].join(' ');
+// console.log(newName);
 
-const capitalizedName = function(name) {
-  const names = name.split(' ');
-  const namesUpper = [];
-  for (const n of names) {
-    //  namesUpper.push(n[0].toUpperCase() + n.slice(1));
-    namesUpper.push(n[0].replace( n[0], n[0].toUpperCase() ) + n.slice(1))
-    
-      // capitalize first letter
-  }
-  console.log(namesUpper.join(' '));
-}
+// const capitalizedName = function(name) {
+//   const names = name.split(' ');
+//   const namesUpper = [];
+//   for (const n of names) {
+//     //  namesUpper.push(n[0].toUpperCase() + n.slice(1));
+//     namesUpper.push(n[0].replace( n[0], n[0].toUpperCase() ) + n.slice(1))
 
-capitalizedName('jessica ann smith davis');
-capitalizedName('grant alex emerson');
+//       // capitalize first letter
+//   }
+//   console.log(namesUpper.join(' '));
+// }
 
-// padding 
-const message = 'Go to gate 23!';
-console.log(message.padStart(25, "+").padEnd(35, '+'));
-console.log('grant'.padStart(25, '+'));
-console.log('bob'.padStart(25, '=').padEnd(3, "+"));
+// capitalizedName('jessica ann smith davis');
+// capitalizedName('grant alex emerson');
 
-const maskCreditCard = function(number) {
-  const str = number + '';
-  const last = str.slice(-4);
-  return last.padStart(str.length, "*")
-}
+// // padding
+// const message = 'Go to gate 23!';
+// console.log(message.padStart(25, "+").padEnd(35, '+'));
+// console.log('grant'.padStart(25, '+'));
+// console.log('bob'.padStart(25, '=').padEnd(3, "+"));
 
-console.log(maskCreditCard(123321433))
-console.log(maskCreditCard(234432234234))
-console.log(maskCreditCard('09203232123'))
+// const maskCreditCard = function(number) {
+//   const str = number + '';
+//   const last = str.slice(-4);
+//   return last.padStart(str.length, "*")
+// }
 
-// repeat
-const message2 = 'Bad Weather....All Departures Delayed ';
-console.log(message2.repeat(5));
+// console.log(maskCreditCard(123321433))
+// console.log(maskCreditCard(234432234234))
+// console.log(maskCreditCard('09203232123'))
 
-const planesInLine = function(n) {
-  console.log(`There are ${n} planes in line ${'✈️'.repeat(n)}`);
-}
-planesInLine(5);
-planesInLine(3)
-planesInLine(12)
+// // repeat
+// const message2 = 'Bad Weather....All Departures Delayed ';
+// console.log(message2.repeat(5));
 
-
+// const planesInLine = function(n) {
+//   console.log(`There are ${n} planes in line ${'✈️'.repeat(n)}`);
+// }
+// planesInLine(5);
+// planesInLine(3)
+// planesInLine(12)
 
 // video 121 ================== strings part 2
 
