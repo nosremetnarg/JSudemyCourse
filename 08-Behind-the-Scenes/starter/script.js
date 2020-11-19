@@ -1,5 +1,194 @@
 // 'use strict';
 
+// video 131 call and apply methods =====================
+
+const lufthansa = {
+  airline: 'Lufthansa',
+  iataCode: 'LH',
+  bookings: [],
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+    );
+    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+  },
+};
+
+lufthansa.book(239, 'Grant Emerson');
+lufthansa.book(635, 'John Smith');
+console.log(lufthansa);
+
+const eurowings = {
+  airline: 'Eurowings',
+  iataCode: 'EW',
+  bookings: [],
+};
+
+const book = lufthansa.book;
+
+// book(23, 'Sarah Williams'); // doesnt work
+// Call method
+book.call(eurowings, 23, "Sarah Williams"); // call manually updates the this keyword to the first argument of function call
+console.log(eurowings);
+
+book.call(lufthansa, 239, "Santa Claus")
+console.log(lufthansa);
+
+const swiss = {
+  airline: 'Swiss Air Lines',
+  iataCode: 'LX',
+  bookings: []
+}
+
+book.call(swiss, 583, 'Mary Cooper');
+console.log(swiss);
+
+// Apply method
+const flightData = [583, 'George Cooper']
+book.apply(swiss, flightData);
+console.log(swiss);
+
+book.call(swiss, ...flightData) // spreading data from an array
+
+// video 130 ========== functions returning functions ============
+
+// const greet = function (greeting) {
+//   return function (name) {
+//     console.log(`${greeting} ${name}`);
+//   };
+// };
+
+// // these are closures
+// const greeterHey = greet('Hey');
+// greeterHey('Grant');
+// greeterHey('Steven');
+
+// const greeterBye = greet('bye');
+// greeterBye('Amelia');
+// greeterBye('Megan');
+
+// greet('Hello')('Mike')
+
+// // arrow function
+// const bye = (greeting) => {
+//   return nameHi = (name) => {
+//     console.log(`${greeting} ${name}`);
+//   }
+// }
+
+// bye('goodbye')('covid')
+
+// video 127 =========================
+
+// const fart = function () {
+//   console.log(`stinks in here 💨`);
+// };
+
+// document.body.addEventListener('click', fart);
+// ['grant', 'silas', 'amelia'].forEach(fart)
+
+// const oneWord = function (str) {
+//   return str.replace(/ /g, '').toLowerCase();
+// };
+
+// const upperFirstWord = function (str) {
+//   const [first, ...other] = str.split(' ');
+//   return [first.toUpperCase(), ...other].join(' ');
+// };
+
+// // higher-order function
+// const transformer = function (str, fn) {
+//   console.log(`original string: ${str}`);
+//   console.log(`Transformed string: ${fn(str)}`);
+
+//   console.log(`transformed by: ${fn.name}`);
+// };
+
+// transformer('JavaScript is the best!', upperFirstWord);
+// transformer('JavaScript is the best!', oneWord);
+
+// // JS uses callbacks all the time
+// const high5 = function () {
+//   console.log('👋');
+// };
+
+// document.body.addEventListener('click', high5);
+
+// ['jonas', 'martha', 'adam'].forEach(high5);
+
+// const addNum = function (num) {
+//   return num + num;
+// }
+
+// const subtract = function(num) {
+//   return num - num
+// }
+// const greeting = function(str) {
+//   return `welcome to earth`
+// }
+
+// const mathMachine = function(num, fn) {
+//   console.log(`Original number: ${num}`);
+//   console.log(`Number with math: ${fn(num)}`);
+// }
+
+// mathMachine(3, addNum)
+// mathMachine(3, subtract)
+// mathMachine(greeting)
+
+// const flight = 'LH234';
+// const grant = {
+//   name: 'Grant Emerson',
+//   passport: 234343223,
+// };
+
+// const checkIn = function (flightNum, passenger) {
+//   flightNum = 'LH999';
+//   passenger.name = "Mr. " + passenger.name;
+
+//   if (passenger.passport === 234343223) {
+//     alert('checked in')
+//   } else {
+//     alert('Wrong Passport!')
+//   }
+// };
+
+// checkIn(flight, grant);
+// console.log(flight);
+// console.log(grant);
+
+// const flightNum = flight;
+// const passenger = grant;
+
+// const newPassport = function(person) {
+//   person.passport = Math.trunc(Math.random() * 10000000)
+// }
+
+// newPassport(grant);
+// checkIn(flight, grant);
+
+// section 10 ======= video 124 ==============================
+
+// const bookings = [];
+
+// const createBooking = function (flightNum, numPassengers = 1, price = 199 * numPassengers) {
+//   // ES 5
+//   // numPassengers = numPassengers || 1;
+//   // price = price || 199;
+//   const booking = {
+//     flightNum,
+//     numPassengers,
+//     price,
+//   };
+//   console.log(booking);
+//   bookings.push(booking);
+// };
+// createBooking('LH123');
+// createBooking('LH123', 2, 800);
+// createBooking('LH123', 2);
+// createBooking('LH123', 5);
+// createBooking('LH123', undefined, 1000);
+
 // const weekDays = ['mon', 'tues', 'wed', 'thurs', 'fri', 'sat', 'sun'];
 // const openingHours = {
 //   [weekDays[3]]: {
@@ -46,11 +235,6 @@
 //     console.log(mainIngredient, otherIngredients);
 //   },
 // };
-
-// section 10 ======= video 124 ==============================
-
-
-
 
 // challenge 4 ==================================
 
