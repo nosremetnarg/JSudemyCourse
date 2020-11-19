@@ -1,75 +1,136 @@
 // 'use strict';
 
-const weekDays = ['mon', 'tues', 'wed', 'thurs', 'fri', 'sat', 'sun'];
-const openingHours = {
-  [weekDays[3]]: {
-    open: 12,
-    close: 22,
-  },
-  [weekDays[4]]: {
-    open: 11,
-    close: 23,
-  },
-  [weekDays[5]]: {
-    open: 0, // Open 24 hours
-    close: 24,
-  },
-};
+// const weekDays = ['mon', 'tues', 'wed', 'thurs', 'fri', 'sat', 'sun'];
+// const openingHours = {
+//   [weekDays[3]]: {
+//     open: 12,
+//     close: 22,
+//   },
+//   [weekDays[4]]: {
+//     open: 11,
+//     close: 23,
+//   },
+//   [weekDays[5]]: {
+//     open: 0, // Open 24 hours
+//     close: 24,
+//   },
+// };
 
-const restaurant = {
-  name: 'Classico Italiano',
-  location: 'Via Angelo Tavanti 23, Firenze, Italy',
-  categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
-  starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
-  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
+// const restaurant = {
+//   name: 'Classico Italiano',
+//   location: 'Via Angelo Tavanti 23, Firenze, Italy',
+//   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
+//   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
+//   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-  // ES6 enhanced obj literal
-  openingHours,
+//   // ES6 enhanced obj literal
+//   openingHours,
 
-  order(starterIndex, mainIndex) {
-    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
-  },
-  orderDelivery({
-    starterIndex = 1,
-    mainIndex = 0,
-    time = '20:00',
-    address,
-  }) {},
+//   order(starterIndex, mainIndex) {
+//     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+//   },
+//   orderDelivery({
+//     starterIndex = 1,
+//     mainIndex = 0,
+//     time = '20:00',
+//     address,
+//   }) {},
 
-  orderPasta(ing1, ing2, ing3) {
-    console.log(
-      `here is your delicious pasta with ${ing1}, ${ing2}, and ${ing3}`
-    );
-  },
+//   orderPasta(ing1, ing2, ing3) {
+//     console.log(
+//       `here is your delicious pasta with ${ing1}, ${ing2}, and ${ing3}`
+//     );
+//   },
 
-  orderPizza(mainIngredient, ...otherIngredients) {
-    console.log(mainIngredient, otherIngredients);
-  },
-};
+//   orderPizza(mainIngredient, ...otherIngredients) {
+//     console.log(mainIngredient, otherIngredients);
+//   },
+// };
+
+// section 10 ======= video 124 ==============================
+
+
+
 
 // challenge 4 ==================================
 
+// attempt 5
+// document.body.append(document.createElement('textarea'));
+// document.body.append(document.createElement('button'));
+
+// document.querySelector('button').addEventListener('click', function () {
+//   const text = document.querySelector('textarea').value;
+//   // console.log(text);
+//   const words = text.split('\n');
+//   // console.log(words);
+//   for (const [i, word] of words.entries()) {
+//     const [first, second] = word.toLowerCase().trim().split('_');
+//     // console.log(first, second);
+//     const output = `${first}${second.replace(
+//       second[0],
+//       second[0].toUpperCase()
+//     )}`;
+//     console.log(`${output.padEnd(20)}${'✅'.repeat(i + 1)}`);
+//   }
+// });
+
+// attempt 4
+// document.body.append(document.createElement('textarea'));
+// document.body.append(document.createElement('button'));
+
+// document.querySelector('button').addEventListener('click', function () {
+//   const text = document.querySelector('textarea').value;
+//   const rows = text.split('\n');
+//   for (const [i, row] of rows.entries()) {
+//     const [first, second] = row.toLowerCase().trim().split('_');
+//     const output = `${first}${second.replace(
+//       second[0],
+//       second[0].toUpperCase()
+//     )}`;
+//     console.log(`${output.padEnd(20)}${'✅'.repeat(i + 1)}`);
+//   }
+// });
+
+// attempt 3
+// document.body.append(document.createElement('textarea'));
+// document.body.append(document.createElement('button'));
+
+// document.querySelector('button').addEventListener('click', function () {
+//   const text = document.querySelector('textarea').value;
+//   const rows = text.split('\n'); // puts text in rows, seperates text
+//   console.log(rows);
+//   for (const [i, row] of rows.entries()) { // destructor using entries method to get individual entries and index of the array
+//     const [first, second] = row.toLowerCase().trim().split('_');
+//     console.log(first, second ); // create two arrays splitting them at the _ char, trimming off the white space and transforming the strings to lowerCase
+//     const output = `${first}${second.replace( // adding camelCase to the second work
+//       second[0],
+//       second[0].toUpperCase()
+//     )}`;
+//     console.log(`${output.padEnd(20)}${'✅'.repeat(i + 1)}`);
+//   }
+// });
+
 // attempt 2
-document.body.append(document.createElement('textarea'));
-document.body.append(document.createElement('button'));
+// document.body.append(document.createElement('textarea'));
+// document.body.append(document.createElement('button'));
 
-document.querySelector('button').addEventListener('click', function () {
-  const text = document.querySelector('textarea').value;
-  console.log(text);
+// document.querySelector('button').addEventListener('click', function () {
+//   const text = document.querySelector('textarea').value;
+//   console.log(text);
 
-  const rows = text.split('\n'); // seperate entries
-  console.log(rows);
+//   const rows = text.split('\n'); // seperate entries
+//   console.log(rows);
 
-  for (const [i, row] of rows.entries()) {
-    const [first, second] = row.toLowerCase().trim().split('_');
+//   for (const [i, row] of rows.entries()) {
+//     const [first, second] = row.toLowerCase().trim().split('_');
 
-    const output = `${first}${second.replace(
-      second[0],
-      second[0].toUpperCase()
-    )}`;
-    console.log(`${output.padEnd(20)}${'✅'.repeat(i + 1)}`);
-  }
-});
+//     const output = `${first}${second.replace(
+//       second[0],
+//       second[0].toUpperCase()
+//     )}`;
+//     console.log(`${output.padEnd(20)}${'✅'.repeat(i + 1)}`);
+//   }
+// });
 
 // attempt 1
 // document.body.append(document.createElement('textarea'));
