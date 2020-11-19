@@ -1,54 +1,216 @@
 // 'use strict';
 
+// video 134 ==================== IIFE =====================
+
+const runOnce = function () {
+  console.log('this will never run again');
+}
+runOnce();
+
+// IIFE
+(function() {
+  console.log('this will never run again again');
+  const isPrivate = 23;
+})(); // converts function into an expression and immediately call it
+
+// console.log(isPrivate);
+
+(() => console.log('this will also never run again again'))();
+// wrap this in parenthesis 
+
+{
+  const isPrivate = 23;
+  var notPrivate = 28
+}
+// console.log(isPrivate);
+console.log(notPrivate);
+
+
+// Function Challenge 1
+
+// Attempt 1
+// const poll = {
+//   question: 'What is your favourite programming language?',
+//   options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
+//   // This generates [0, 0, 0, 0]. More in the next section!
+//   answers: new Array(4).fill(0),
+//   // Get answer
+//   registerNewAnswer() {
+//     const answer = Number(
+//       prompt(
+//         `${this.question}\n${this.options.join('\n')}\n(Write option number)`
+//       )
+//     );
+//     console.log(answer);
+
+//     // Register answer
+//     typeof answer === 'number' &&
+//       answer < this.answers.length &&
+//       this.answers[answer]++;
+
+//     this.displayResults();
+//     this.displayResults('string');
+//   },
+
+//   displayResults(type = 'array') {
+//     if (type === 'array') {
+//       console.log(this.answers);
+//     } else if (type === 'string') {
+//       console.log(`Poll results are ${this.answers.join(', ')}`);
+//     }
+//   },
+// };
+
+// document
+//   .querySelector('.poll')
+//   .addEventListener('click', poll.registerNewAnswer.bind(poll));
+
+// poll.displayResults.call({ answers: [5, 2, 3] }, 'string');
+// poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] });
+
+//   [5,2,3]
+// § Data2:[1,5,3,9,6,1]
+
+// let answered = 3
+// console.log();
+// document.querySelector('.poll').addEventListener('click', function () {
+//   const answer = prompt('what is your answer')
+//   console.log(answer);
+//   console.log(poll.answers[answer]++);
+// });
+
+// video 132 bind ================================
+// const lufthansa = {
+//   airline: 'Lufthansa',
+//   iataCode: 'LH',
+//   bookings: [],
+//   book(flightNum, name) {
+//     console.log(
+//       `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+//     );
+//     this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+//   },
+// };
+// const swiss = {
+//   airline: 'Swiss Air Lines',
+//   iataCode: 'LX',
+//   bookings: [],
+// };
+// const book = lufthansa.book;
+
+// // book.call(eurowings, 23, "Sarah Williams");
+
+// const eurowings = {
+//   airline: 'Eurowings',
+//   iataCode: 'EW',
+//   bookings: [],
+// };
+
+// const bookEW = book.bind(eurowings);
+// const bookLH = book.bind(lufthansa);
+// const bookLX = book.bind(swiss);
+// bookEW(23, 'Steven Williams');
+
+// const bookEW23 = book.bind(eurowings, 23); // partial application....applying data early
+// bookEW23('Grant Emerson');
+// bookEW23('Martha Cooper');
+
+// // With Event Listeners
+// lufthansa.planes = 300;
+// lufthansa.buyPlane = function () {
+//   console.log(this);
+
+//   this.planes++;
+//   console.log(this.planes);
+// };
+// document
+//   .querySelector('.buy')
+//   .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+// // Partial Application
+
+// const addTax = (rate, value) => value + value * rate;
+// console.log(addTax(0.1, 200));
+
+// const addVAT = addTax.bind(null, 0.23);
+
+// console.log(addVAT(100));
+// console.log(addVAT(23));
+
+// const addTaxes = rate => value => (`${value + value * rate}`);
+// // addTaxes(0.1)(200);
+
+// const addVAT2 = addTaxes(.23);
+// console.log(addVAT2(100));
+// console.log(addVAT2(23));
+
+// const greet = function (greeting) {
+//   return function (name) {
+//     console.log(`${greeting} ${name}`);
+//   };
+// };
+
+// // arrow function
+// const bye = (greeting) => {
+//   return nameHi = (name) => {
+//     console.log(`${greeting} ${name}`);
+//   }
+// }
+
+// // these are closures
+// const greeterHey = greet('Hey');
+// greeterHey('Grant');
+// greeterHey('Steven');
+
 // video 131 call and apply methods =====================
 
-const lufthansa = {
-  airline: 'Lufthansa',
-  iataCode: 'LH',
-  bookings: [],
-  book(flightNum, name) {
-    console.log(
-      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
-    );
-    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
-  },
-};
+// const lufthansa = {
+//   airline: 'Lufthansa',
+//   iataCode: 'LH',
+//   bookings: [],
+//   book(flightNum, name) {
+//     console.log(
+//       `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+//     );
+//     this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+//   },
+// };
 
-lufthansa.book(239, 'Grant Emerson');
-lufthansa.book(635, 'John Smith');
-console.log(lufthansa);
+// lufthansa.book(239, 'Grant Emerson');
+// lufthansa.book(635, 'John Smith');
+// console.log(lufthansa);
 
-const eurowings = {
-  airline: 'Eurowings',
-  iataCode: 'EW',
-  bookings: [],
-};
+// const eurowings = {
+//   airline: 'Eurowings',
+//   iataCode: 'EW',
+//   bookings: [],
+// };
 
-const book = lufthansa.book;
+// const book = lufthansa.book;
 
-// book(23, 'Sarah Williams'); // doesnt work
-// Call method
-book.call(eurowings, 23, "Sarah Williams"); // call manually updates the this keyword to the first argument of function call
-console.log(eurowings);
+// // book(23, 'Sarah Williams'); // doesnt work
+// // Call method
+// book.call(eurowings, 23, "Sarah Williams"); // call manually updates the this keyword to the first argument of function call
+// console.log(eurowings);
 
-book.call(lufthansa, 239, "Santa Claus")
-console.log(lufthansa);
+// book.call(lufthansa, 239, "Santa Claus")
+// console.log(lufthansa);
 
-const swiss = {
-  airline: 'Swiss Air Lines',
-  iataCode: 'LX',
-  bookings: []
-}
+// const swiss = {
+//   airline: 'Swiss Air Lines',
+//   iataCode: 'LX',
+//   bookings: []
+// }
 
-book.call(swiss, 583, 'Mary Cooper');
-console.log(swiss);
+// book.call(swiss, 583, 'Mary Cooper');
+// console.log(swiss);
 
-// Apply method
-const flightData = [583, 'George Cooper']
-book.apply(swiss, flightData);
-console.log(swiss);
+// // Apply method
+// const flightData = [583, 'George Cooper']
+// book.apply(swiss, flightData);
+// console.log(swiss);
 
-book.call(swiss, ...flightData) // spreading data from an array
+// book.call(swiss, ...flightData) // spreading data from an array
 
 // video 130 ========== functions returning functions ============
 
