@@ -1,32 +1,89 @@
 // 'use strict';
 
+
+// video 135 ============== Closure =======================
+
+const secureBooking = function() {
+  let passengerCount = 0;
+
+  return function(){
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  }
+}
+
+const booker = secureBooking();
+booker();
+booker();
+booker();
+
+console.dir(booker)
+
 // video 134 ==================== IIFE =====================
 
-const runOnce = function () {
-  console.log('this will never run again');
-}
-runOnce();
+// const runOnce = function () {
+//   console.log('this will never run again');
+// };
+// runOnce();
 
-// IIFE
-(function() {
-  console.log('this will never run again again');
-  const isPrivate = 23;
-})(); // converts function into an expression and immediately call it
+// // IIFE
+// (function () {
+//   console.log('this will never run again again');
+//   const isPrivate = 23;
+// })(); // converts function into an expression and immediately call it
 
-// console.log(isPrivate);
+// // console.log(isPrivate);
 
-(() => console.log('this will also never run again again'))();
-// wrap this in parenthesis 
+// (() => console.log('this will also never run again again'))();
+// // wrap this in parenthesis
 
-{
-  const isPrivate = 23;
-  var notPrivate = 28
-}
-// console.log(isPrivate);
-console.log(notPrivate);
-
+// {
+//   const isPrivate = 23;
+//   var notPrivate = 28;
+// }
+// // console.log(isPrivate);
+// console.log(notPrivate);
 
 // Function Challenge 1
+
+// Attempt 2
+
+// const poll = {
+//   question: 'What is your favourite programming language?',
+//   options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
+//   // This generates [0, 0, 0, 0]. More in the next section!
+//   answers: new Array(4).fill(0),
+//   // this creates a method on the poll obj and references locally the other attributes
+//   // question and answers, and options using the this keyword
+//   registerNewAnswer() {
+//     const answer = Number(
+//       prompt(
+//         `${this.question}\n${this.options.join('\n')}\n(Write option number)`
+//       )
+//     );
+//     console.log(answer);
+
+//     // Register the answer OR Check the answer to make sure it is appropriate
+//     // checks that the type of entry is a number and it is less than the length of the answers array
+//     // it also increases the array number that matches the answer entry
+//     typeof answer === 'number' &&
+//       answer < this.answers.length &&
+//       this.answers[answer]++;
+
+//       this.displayResults();
+//       this.displayResults('string');
+
+//   },
+//   displayResults(type) {
+//     if (typeof type === "array") {
+//     console.log(`${this.answers}`);
+//   } else if (typeof type === 'string') {
+//     console.log(`poll results are ${this.answers.join(', ')}`);
+//   }
+// }
+// }
+
+// document.querySelector('.poll').addEventListener('click', poll.registerNewAnswer.bind(poll))
 
 // Attempt 1
 // const poll = {
@@ -79,7 +136,115 @@ console.log(notPrivate);
 //   console.log(poll.answers[answer]++);
 // });
 
+// redoing 131 and 132 videos reviewing this keyword call apply and bind ========================
+
+// const lufthansa = {
+//   airline: 'Lufthansa',
+//   iataCode: 'LH',
+//   bookings: [],
+//   // this is defining a method using ES6
+//   book(flightNum, name) {
+//     console.log(
+//       `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+//     );
+//     this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+//   },
+// };
+
+// lufthansa.book(239, 'Grant Emerson');
+// lufthansa.book(635, 'John Smith');
+// console.log(lufthansa);
+
+// const eurowings = {
+//   airline: 'Eurowings',
+//   iataCode: 'EW',
+//   bookings: [],
+// };
+
+// const book = lufthansa.book;
+
+// // does not work
+// // book(23, 'Sarah Williams');
+
+// // CALL method
+// book.call(eurowings, 23, 'Sarah Willimas');
+// console.log(eurowings); // manually and explicitly set this keyword
+
+// book.call(lufthansa, 239, 'Santa Claus');
+// console.log(lufthansa);
+
+// const swiss = {
+//   airline: 'Swiss Air Lines',
+//   iataCode: 'LX',
+//   bookings: [],
+// };
+
+// book.call(swiss, 583, 'Mary Cooper');
+// console.log(swiss); // call method is calling book function from lufthansa and pointing this keyword to the new swiss obj
+
+// // APPLY method not really used any more
+// // doesnt recieve list, takes an []
+
+// const flightData = [583, 'George Cooper'];
+// book.apply(swiss, flightData); // flightData is an array of data. two args one referencing this and then arr of data
+// console.log(swiss);
+
+// book.call(swiss, ...flightData); // instead of apply() use spread operator on arr
+
+// // video 132 repeat BING ==============================
+// // manually set this keyword. returns a new func where this keyword is bound
+// // set to whatever value is passed into bing
+// // book.call(eurowings, 23, 'Sarah Willimas');
+
+// const bookEW = book.bind(eurowings);
+// const bookLX = book.bind(swiss);
+// const bookLH = book.bind(lufthansa);
+// bookEW(23, 'Steven Williams');
+
+// const bookEW23 = book.bind(eurowings, 23);
+// bookEW23('Grant Emerson');
+// bookEW23('Martha Cooper');
+
+// // with event listeners
+
+// lufthansa.planes = 300;
+// lufthansa.buyPlane = function () {
+//   console.log(this);
+
+//   this.planes++;
+//   console.log(this.planes);
+// };
+// document
+//   .querySelector('.buy')
+//   .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+// partial application
+
+// const addTax = (rate, value) => value + value * rate;
+// console.log(addTax(0.1, 200));
+
+// const addVAT = addTax.bind(null, 0.23);
+// console.log(addVAT(100));
+// console.log(addVAT(23));
+
+// const greet = phrase => {
+//   return name = person => {
+//     console.log(`${phrase} ${person}, how are you today`);
+//   }
+// }
+
+// // these are closures
+// const greeterHey = greet('Hey');
+// greeterHey('Grant');
+// greeterHey('Steven');
+
+// const hello = greet('hey')
+// hello('Grant')
+// const goodbye = greet('goodbye')
+// goodbye('Amelia')
+
 // video 132 bind ================================
+
 // const lufthansa = {
 //   airline: 'Lufthansa',
 //   iataCode: 'LH',
