@@ -1,5 +1,19 @@
 // 'use strict';
 
+// 137 =============== challenge ===================
+
+(function () {
+  const header = document.querySelector('h1'); header.style.color = 'red';
+  })()
+  const header1 = document.querySelector('h1')
+  header1.addEventListener('click', function() {
+    console.log('clicked');
+    header1.style.color = 'blue'
+    
+  })
+
+  
+
 // video 136 ========== closures part 2 ===================
 
 // Example 1
