@@ -78,28 +78,28 @@ const displayMovements = function (movements) {
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
-displayMovements(account1.movements);
+// displayMovements(account1.movements);
 
 const calcDisplayBalance = function (movements) {
   const balance = movements.reduce((acc, mov) => acc + mov, 0);
   labelBalance.textContent = `${balance}€`;
 };
-calcDisplayBalance(account1.movements);
+// calcDisplayBalance(account1.movements);
 
-const calcDisplaySummary = function (movements) {
-  const incomes = movements
+const calcDisplaySummary = function (acc) {
+  const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = `${incomes}€`;
 
-  const out = movements
+  const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumOut.textContent = `${Math.abs(out)}€`;
 
-  const interest = movements
+  const interest = acc.movements
     .filter(mov => mov > 0)
-    .map(deposit => (deposit * 1.2) / 100)
+    .map(deposit => (deposit * acc.interestRate) / 100)
     .filter((int, i, arr) => {
       // console.log(arr);
       return int >= 1;
@@ -107,7 +107,7 @@ const calcDisplaySummary = function (movements) {
     .reduce((acc, deposit) => acc + deposit, 0);
   labelSumInterest.textContent = `${Math.abs(interest)}€`;
 };
-calcDisplaySummary(account1.movements);
+// calcDisplaySummary(account1.movements);
 
 const createUsernames = function (accs) {
   accs.forEach(function (acc) {
@@ -121,14 +121,35 @@ const createUsernames = function (accs) {
 // const user = 'Steven Thomas Williams'; //stw
 
 createUsernames(accounts);
-// console.log(accounts);
 
-// challenge 3 ================
-// const calcDisplaySummary = function (movements) {
-//   const incomes = movements
-//     .filter(mov => mov > 0)
-//     .reduce((acc, mov) => acc + mov, 0);
-//   labelSumIn.textContent = `${incomes}€`;
+// Event Handlers
+let currentAccount;
+
+btnLogin.addEventListener('click', function(e) {
+  // prevents form from submitting
+  e.preventDefault();
+  
+
+  currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value);
+  console.log(currentAccount);
+
+  // ? is optional chaining. First the program checks to see if currentAccount exists
+ if (currentAccount?.pin === Number(inputLoginPin.value)) {
+   // Display UI welcome message
+    labelWelcome.textContent = `Welcome back, ${currentAccount.owner.split(" ")[0]}`;
+   containerApp.style.opacity = 100;
+
+   // Clear fields
+   inputLoginUsername.value = inputLoginPin.value = "";
+   inputLoginPin.blur();
+   // Display movements
+  displayMovements(currentAccount.movements);
+   // Display balance
+  calcDisplayBalance(currentAccount.movements);
+   // Display summary
+   calcDisplaySummary(currentAccount);
+ }
+})
 
 const CalcAvgAge = ages =>
   ages
@@ -139,29 +160,7 @@ const CalcAvgAge = ages =>
     }, 0);
 const avg1 = CalcAvgAge([5, 2, 4, 1, 15, 8, 3]);
 const avg2 = CalcAvgAge([16, 6, 10, 5, 6, 1, 4]);
-// console.log(avg1, avg2);
 
-// const CalcAvgAge = (ages) => ages
-//       .map(age => (age <= 2 ? age * 2 : 16 + age * 4))
-//       .filter(age => age >= 18)
-//       .reduce((acc, age, i, arr) => {
-//         return acc + age / arr.length;
-//       }, 0) ;
-// ;
-// const avg1 = CalcAvgAge([5, 2, 4, 1, 15, 8, 3]);
-// const avg2 = CalcAvgAge([16, 6, 10, 5, 6, 1, 4]);
-// console.log(avg1, avg2);
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-// LECTURES
-
-// const currencies = new Map([
-//   ['USD', 'United States dollar'],
-//   ['EUR', 'Euro'],
-//   ['GBP', 'Pound sterling'],
-// ]);
-
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
